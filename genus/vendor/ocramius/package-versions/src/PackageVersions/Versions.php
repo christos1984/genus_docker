@@ -14,6 +14,7 @@ final class Versions
 {
     public const ROOT_PACKAGE_NAME = 'knpuniversity/symfony';
     public const VERSIONS          = array (
+  'beberlei/doctrineextensions' => 'v1.2.3@a8747a2aef34f602c365cf2efd1abc94c5ae7e0a',
   'behat/transliterator' => 'v1.2.0@826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c',
   'doctrine/annotations' => 'v1.8.0@904dca4eb10715b92569fbcd79e201d5c349b6bc',
   'doctrine/cache' => 'v1.8.1@d4374ae95b36062d02ef310100ed33d78738d76c',

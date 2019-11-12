@@ -70,35 +70,40 @@ class __TwigTemplate_c2f9dfa3208d84f45e00c5a3be9b7947dfa9ac8069eaa980066692b0d53
             <tr>
                 <th>Genus</th>
                 <th># of species</th>
+                <th># of scientists</th>
                 <th>Last updated</th>
             </tr>
         </thead>
         <tbody>
             ";
-        // line 13
+        // line 14
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["genuses"]) || array_key_exists("genuses", $context) ? $context["genuses"] : (function () { throw new RuntimeError('Variable "genuses" does not exist.', 13, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["genuses"]) || array_key_exists("genuses", $context) ? $context["genuses"] : (function () { throw new RuntimeError('Variable "genuses" does not exist.', 14, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["genus"]) {
-            // line 14
+            // line 15
             echo "                <tr>
                     <td>
                         <a href=\"";
-            // line 16
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("genus_show", ["slug" => twig_get_attribute($this->env, $this->source, $context["genus"], "slug", [], "any", false, false, false, 16)]), "html", null, true);
+            // line 17
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("genus_show", ["slug" => twig_get_attribute($this->env, $this->source, $context["genus"], "slug", [], "any", false, false, false, 17)]), "html", null, true);
             echo "\">
                             ";
-            // line 17
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["genus"], "name", [], "any", false, false, false, 17), "html", null, true);
+            // line 18
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["genus"], "name", [], "any", false, false, false, 18), "html", null, true);
             echo "
                         </a>
                     </td>
                     <td>";
-            // line 20
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["genus"], "speciesCount", [], "any", false, false, false, 20), "html", null, true);
-            echo "</td>
-                    <td>";
             // line 21
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["genus"], "updatedAt", [], "any", false, false, false, 21), "Y-m-d"), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["genus"], "speciesCount", [], "any", false, false, false, 21), "html", null, true);
+            echo "</td>
+                    <td> ";
+            // line 22
+            echo twig_escape_filter($this->env, twig_length_filter($this->env, twig_get_attribute($this->env, $this->source, $context["genus"], "genusScientists", [], "any", false, false, false, 22)), "html", null, true);
+            echo " </td>
+                    <td>";
+            // line 23
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["genus"], "updatedAt", [], "any", false, false, false, 23), "Y-m-d"), "html", null, true);
             echo "</td>
                 </tr>
             ";
@@ -106,7 +111,7 @@ class __TwigTemplate_c2f9dfa3208d84f45e00c5a3be9b7947dfa9ac8069eaa980066692b0d53
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['genus'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 24
+        // line 26
         echo "        </tbody>
     </table>
 ";
@@ -130,7 +135,7 @@ class __TwigTemplate_c2f9dfa3208d84f45e00c5a3be9b7947dfa9ac8069eaa980066692b0d53
 
     public function getDebugInfo()
     {
-        return array (  110 => 24,  101 => 21,  97 => 20,  91 => 17,  87 => 16,  83 => 14,  79 => 13,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  115 => 26,  106 => 23,  102 => 22,  98 => 21,  92 => 18,  88 => 17,  84 => 15,  80 => 14,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -143,6 +148,7 @@ class __TwigTemplate_c2f9dfa3208d84f45e00c5a3be9b7947dfa9ac8069eaa980066692b0d53
             <tr>
                 <th>Genus</th>
                 <th># of species</th>
+                <th># of scientists</th>
                 <th>Last updated</th>
             </tr>
         </thead>
@@ -155,6 +161,7 @@ class __TwigTemplate_c2f9dfa3208d84f45e00c5a3be9b7947dfa9ac8069eaa980066692b0d53
                         </a>
                     </td>
                     <td>{{ genus.speciesCount }}</td>
+                    <td> {{ genus.genusScientists|length }} </td>
                     <td>{{ genus.updatedAt|date('Y-m-d') }}</td>
                 </tr>
             {% endfor %}

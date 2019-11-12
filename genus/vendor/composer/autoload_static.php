@@ -119,6 +119,7 @@ class ComposerStaticInit8b1f87d9a1fa79ee9c3bde6ea86c1ae0
             'Doctrine\\Bundle\\FixturesBundle\\' => 31,
             'Doctrine\\Bundle\\DoctrineCacheBundle\\' => 36,
             'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
+            'DoctrineExtensions\\' => 19,
             'DeepCopy\\' => 9,
         ),
     );
@@ -370,6 +371,10 @@ class ComposerStaticInit8b1f87d9a1fa79ee9c3bde6ea86c1ae0
         'Doctrine\\Bundle\\DoctrineBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/doctrine-bundle',
+        ),
+        'DoctrineExtensions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/beberlei/doctrineextensions/src',
         ),
         'DeepCopy\\' => 
         array (

@@ -98,7 +98,7 @@ class __TwigTemplate_f6d4d039d250ff7b186f9f39368664ea57a6229ec1f28900c4f4e8bb712
                 <dt>Subfamily:</dt>
                 <dd>";
         // line 13
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["genus"]) || array_key_exists("genus", $context) ? $context["genus"] : (function () { throw new RuntimeError('Variable "genus" does not exist.', 13, $this->source); })()), "subFamily", [], "any", false, false, false, 13), "html", null, true);
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["genus"]) || array_key_exists("genus", $context) ? $context["genus"] : (function () { throw new RuntimeError('Variable "genus" does not exist.', 13, $this->source); })()), "subFamily", [], "any", false, false, false, 13), "name", [], "any", false, false, false, 13), "html", null, true);
         echo "</dd>
                 <dt>Known Species:</dt>
                 <dd>";
@@ -108,18 +108,60 @@ class __TwigTemplate_f6d4d039d250ff7b186f9f39368664ea57a6229ec1f28900c4f4e8bb712
                 <dt>Fun Fact:</dt>
                 <dd>";
         // line 17
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["genus"]) || array_key_exists("genus", $context) ? $context["genus"] : (function () { throw new RuntimeError('Variable "genus" does not exist.', 17, $this->source); })()), "funFact", [], "any", false, false, false, 17), "html", null, true);
+        echo $this->extensions['AppBundle\Twig\MarkdownExtension']->parseMarkdown(twig_get_attribute($this->env, $this->source, (isset($context["genus"]) || array_key_exists("genus", $context) ? $context["genus"] : (function () { throw new RuntimeError('Variable "genus" does not exist.', 17, $this->source); })()), "funFact", [], "any", false, false, false, 17));
         echo "</dd>
-                 <dt>Recent Notes</dt>
+                <dt>Recent Notes</dt>
                 <dd>";
         // line 19
         echo twig_escape_filter($this->env, (isset($context["recentNoteCount"]) || array_key_exists("recentNoteCount", $context) ? $context["recentNoteCount"] : (function () { throw new RuntimeError('Variable "recentNoteCount" does not exist.', 19, $this->source); })()), "html", null, true);
         echo "</dd>
-                <dt>Fun Fact:</dt>
-                <dd>";
-        // line 21
-        echo $this->extensions['AppBundle\Twig\MarkdownExtension']->parseMarkdown((isset($context["funFact"]) || array_key_exists("funFact", $context) ? $context["funFact"] : (function () { throw new RuntimeError('Variable "funFact" does not exist.', 21, $this->source); })()));
-        echo "</dd>
+
+                <dt>Lead Scientists</dt>
+                <dd>
+                    <ul class=\"list-group\">
+                        ";
+        // line 24
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["genus"]) || array_key_exists("genus", $context) ? $context["genus"] : (function () { throw new RuntimeError('Variable "genus" does not exist.', 24, $this->source); })()), "genusScientists", [], "any", false, false, false, 24));
+        foreach ($context['_seq'] as $context["_key"] => $context["genusScientist"]) {
+            // line 25
+            echo "                         <li class=\"list-group-item js-scientist-item\" >
+                                <a href=\"";
+            // line 26
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user_show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,             // line 27
+$context["genusScientist"], "user", [], "any", false, false, false, 27), "id", [], "any", false, false, false, 27)]), "html", null, true);
+            // line 28
+            echo "\">
+                                    ";
+            // line 29
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["genusScientist"], "user", [], "any", false, false, false, 29), "fullName", [], "any", false, false, false, 29), "html", null, true);
+            echo "
+                                    (";
+            // line 30
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["genusScientist"], "yearsStudied", [], "any", false, false, false, 30), "html", null, true);
+            echo " years)
+                                </a>
+                                <a href=\"#\"
+                                    data-url=\"";
+            // line 33
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("genus_scientists_remove", ["genusId" => twig_get_attribute($this->env, $this->source,             // line 34
+(isset($context["genus"]) || array_key_exists("genus", $context) ? $context["genus"] : (function () { throw new RuntimeError('Variable "genus" does not exist.', 34, $this->source); })()), "id", [], "any", false, false, false, 34), "userId" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,             // line 35
+$context["genusScientist"], "user", [], "any", false, false, false, 35), "id", [], "any", false, false, false, 35)]), "html", null, true);
+            // line 36
+            echo "\"
+                                   class=\"btn btn-link btn-xs pull-right js-remove-scientist-user\"
+                                >
+                                    <span class=\"fa fa-close\"></span>
+                                </a>
+                            </li>
+                        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['genusScientist'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 43
+        echo "                    </ul>
+                </dd>
             </dl>
         </div>
     </div>
@@ -133,7 +175,7 @@ class __TwigTemplate_f6d4d039d250ff7b186f9f39368664ea57a6229ec1f28900c4f4e8bb712
 
     }
 
-    // line 28
+    // line 51
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -143,7 +185,7 @@ class __TwigTemplate_f6d4d039d250ff7b186f9f39368664ea57a6229ec1f28900c4f4e8bb712
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 29
+        // line 52
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
@@ -152,19 +194,41 @@ class __TwigTemplate_f6d4d039d250ff7b186f9f39368664ea57a6229ec1f28900c4f4e8bb712
     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js\"></script>
 
     <script type=\"text/babel\" src=\"";
-        // line 34
+        // line 57
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/notes.react.js"), "html", null, true);
         echo "\"></script>
     <script type=\"text/babel\">
-                        var notesUrl = '";
-        // line 36
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("genus_show_notes", ["slug" => twig_get_attribute($this->env, $this->source, (isset($context["genus"]) || array_key_exists("genus", $context) ? $context["genus"] : (function () { throw new RuntimeError('Variable "genus" does not exist.', 36, $this->source); })()), "slug", [], "any", false, false, false, 36)]), "html", null, true);
+        var notesUrl = '";
+        // line 59
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("genus_show_notes", ["slug" => twig_get_attribute($this->env, $this->source, (isset($context["genus"]) || array_key_exists("genus", $context) ? $context["genus"] : (function () { throw new RuntimeError('Variable "genus" does not exist.', 59, $this->source); })()), "slug", [], "any", false, false, false, 59)]), "html", null, true);
         echo "';
 
         ReactDOM.render(
           <NoteSection url={notesUrl} />,
           document.getElementById('js-notes-wrapper')
         );
+    </script>
+    <script>
+    jQuery(document).ready(function() {
+        \$('.js-remove-scientist-user').on('click', function(e) {
+                e.preventDefault();
+
+                var \$el = \$(this).closest('.js-scientist-item');
+
+                \$(this).find('.fa-close')
+                    .removeClass('fa-close')
+                    .addClass('fa-spinner')
+                    .addClass('fa-spin');
+                
+                \$.ajax({
+                    url: \$(this).data('url'),
+                    method: 'DELETE'
+                }).done(function() {
+                    \$el.fadeOut();
+                });
+                    
+            });
+    });
     </script>
 ";
         
@@ -187,7 +251,7 @@ class __TwigTemplate_f6d4d039d250ff7b186f9f39368664ea57a6229ec1f28900c4f4e8bb712
 
     public function getDebugInfo()
     {
-        return array (  161 => 36,  156 => 34,  147 => 29,  137 => 28,  121 => 21,  116 => 19,  111 => 17,  106 => 15,  101 => 13,  90 => 6,  80 => 5,  60 => 3,  37 => 1,);
+        return array (  203 => 59,  198 => 57,  189 => 52,  179 => 51,  163 => 43,  151 => 36,  149 => 35,  148 => 34,  147 => 33,  141 => 30,  137 => 29,  134 => 28,  132 => 27,  131 => 26,  128 => 25,  124 => 24,  116 => 19,  111 => 17,  106 => 15,  101 => 13,  90 => 6,  80 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -204,15 +268,38 @@ class __TwigTemplate_f6d4d039d250ff7b186f9f39368664ea57a6229ec1f28900c4f4e8bb712
         <div class=\"genus-details\">
             <dl class=\"genus-details-list\">
                 <dt>Subfamily:</dt>
-                <dd>{{ genus.subFamily }}</dd>
+                <dd>{{ genus.subFamily.name }}</dd>
                 <dt>Known Species:</dt>
                 <dd>{{ genus.speciesCount|number_format }}</dd>
                 <dt>Fun Fact:</dt>
-                <dd>{{ genus.funFact }}</dd>
-                 <dt>Recent Notes</dt>
+                <dd>{{ genus.funFact|markdownify }}</dd>
+                <dt>Recent Notes</dt>
                 <dd>{{ recentNoteCount }}</dd>
-                <dt>Fun Fact:</dt>
-                <dd>{{ funFact|markdownify }}</dd>
+
+                <dt>Lead Scientists</dt>
+                <dd>
+                    <ul class=\"list-group\">
+                        {% for genusScientist in genus.genusScientists %}
+                         <li class=\"list-group-item js-scientist-item\" >
+                                <a href=\"{{ path('user_show', {
+                                    'id': genusScientist.user.id
+                                }) }}\">
+                                    {{ genusScientist.user.fullName }}
+                                    ({{ genusScientist.yearsStudied }} years)
+                                </a>
+                                <a href=\"#\"
+                                    data-url=\"{{ path('genus_scientists_remove', {
+                                       genusId: genus.id,
+                                       userId: genusScientist.user.id
+                                   }) }}\"
+                                   class=\"btn btn-link btn-xs pull-right js-remove-scientist-user\"
+                                >
+                                    <span class=\"fa fa-close\"></span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </dd>
             </dl>
         </div>
     </div>
@@ -227,12 +314,34 @@ class __TwigTemplate_f6d4d039d250ff7b186f9f39368664ea57a6229ec1f28900c4f4e8bb712
 
     <script type=\"text/babel\" src=\"{{ asset('js/notes.react.js') }}\"></script>
     <script type=\"text/babel\">
-                        var notesUrl = '{{ path('genus_show_notes', {'slug': genus.slug}) }}';
+        var notesUrl = '{{ path('genus_show_notes', {'slug': genus.slug}) }}';
 
         ReactDOM.render(
           <NoteSection url={notesUrl} />,
           document.getElementById('js-notes-wrapper')
         );
+    </script>
+    <script>
+    jQuery(document).ready(function() {
+        \$('.js-remove-scientist-user').on('click', function(e) {
+                e.preventDefault();
+
+                var \$el = \$(this).closest('.js-scientist-item');
+
+                \$(this).find('.fa-close')
+                    .removeClass('fa-close')
+                    .addClass('fa-spinner')
+                    .addClass('fa-spin');
+                
+                \$.ajax({
+                    url: \$(this).data('url'),
+                    method: 'DELETE'
+                }).done(function() {
+                    \$el.fadeOut();
+                });
+                    
+            });
+    });
     </script>
 {% endblock %}
 ", "genus/show.html.twig", "/var/www/symfony/app/Resources/views/genus/show.html.twig");

@@ -153,6 +153,18 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_genus_show_notes:
 
+            // genus_scientists_remove
+            if (preg_match('#^/genus/(?P<genusId>[^/]++)/scientists/(?P<userId>[^/]++)$#sD', $pathinfo, $matches)) {
+                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'genus_scientists_remove']), array (  '_controller' => 'AppBundle\\Controller\\GenusController::removeGenusScientistAction',));
+                if (!in_array($requestMethod, ['DELETE'])) {
+                    $allow = array_merge($allow, ['DELETE']);
+                    goto not_genus_scientists_remove;
+                }
+
+                return $ret;
+            }
+            not_genus_scientists_remove:
+
         }
 
         // security_login
@@ -163,6 +175,24 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // security_logout
         if ('/logout' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\SecurityController::logoutAction',  '_route' => 'security_logout',);
+        }
+
+        // user_register
+        if ('/register' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\UserController::registerAction',  '_route' => 'user_register',);
+        }
+
+        if (0 === strpos($pathinfo, '/users')) {
+            // user_show
+            if (preg_match('#^/users/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'user_show']), array (  '_controller' => 'AppBundle\\Controller\\UserController::showAction',));
+            }
+
+            // user_edit
+            if (preg_match('#^/users/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'user_edit']), array (  '_controller' => 'AppBundle\\Controller\\UserController::editAction',));
+            }
+
         }
 
         // homepage

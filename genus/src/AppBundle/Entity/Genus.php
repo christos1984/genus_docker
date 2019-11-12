@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Form\GenusScientistEmbeddedForm;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -68,9 +69,23 @@ class Genus
      */
     private $slug;
 
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="GenusScientist",
+     *     mappedBy="genus",
+     *     fetch="EXTRA_LAZY",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * 
+     * )
+     * @ORM\JoinTable(name="genus_scientist")
+     */
+    private $genusScientists;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->genusScientists = new ArrayCollection();
     }
 
     public function getName()
@@ -160,5 +175,33 @@ class Genus
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+
+    public function addGenusScientist(GenusScientist $user)
+    {
+        if ($this->genusScientists->contains($user)) {
+            return;
+        }
+        $this->genusScientists[] = $user;
+        // not needed for persistence, just keeping both sides in sync        
+        $user->setGenus($this);
+    }
+
+    public function removeGenusScientist(GenusScientist $genusScientist)
+    {
+        if (!$this->genusScientists->contains($genusScientist)) {
+            return;
+        }
+        $this->genusScientists->removeElement($genusScientist);
+        // not needed for persistence, just keeping both sides in sync
+        $genusScientist->setGenus(null);
+    }
+
+    /**
+     * @return ArrayCollection|GenusScientist[]
+     */
+    public function getGenusScientists()
+    {
+        return $this->genusScientists;
     }
 }
